@@ -53,6 +53,7 @@ const MAX_HISTORY_IMAGE_BYTES = 4 * 1024 * 1024;
 let currentTimelineGroup = 0;
 let historyRecords = loadHistoryRecords();
 let musicTracks = [];
+let previewAudio = null;
 let ffmpegAvailable = false;
 let xhsPublishStatus = { available: true, provider: "mock", formats: ["carousel", "video"] };
 let reportState = {
@@ -74,6 +75,7 @@ function enterPreviewMode() {
 }
 
 function exitPreviewMode() {
+  stopPreviewAudio();
   document.body.classList.remove("preview-mode");
   appShell?.classList.remove("preview-mode");
   syncPreviewChrome();
@@ -858,20 +860,63 @@ function showReportPage(index, direction = "next") {
   reportState.counter.textContent = `${String(nextIndex + 1).padStart(2, "0")} / ${String(reportState.total).padStart(2, "0")}`;
 }
 
-function toggleAutoplay() {
-  if (reportState.timer) {
-    stopAutoplay();
+function getSelectedMusicTrack() {
+  const musicId = reportState.musicSelect?.value || "";
+  if (!musicId) {
+    return null;
+  }
+  return musicTracks.find((track) => track.id === musicId) || null;
+}
+
+function ensurePreviewAudio() {
+  if (previewAudio) {
+    return previewAudio;
+  }
+
+  previewAudio = new Audio();
+  previewAudio.loop = true;
+  previewAudio.preload = "auto";
+  previewAudio.volume = 0.85;
+  return previewAudio;
+}
+
+function resolveMusicUrl(url) {
+  return new URL(url, window.location.origin).href;
+}
+
+function startPreviewAudio() {
+  const track = getSelectedMusicTrack();
+  if (!track?.url) {
     return;
   }
 
-  reportState.playButton.textContent = "暂停";
-  reportState.shell.classList.add("playing");
-  reportState.timer = window.setInterval(() => {
-    showReportPage(reportState.current + 1, "next");
-  }, getSlideDurationMs());
+  const audio = ensurePreviewAudio();
+  const nextSrc = resolveMusicUrl(track.url);
+  if (audio.src !== nextSrc) {
+    audio.src = track.url;
+  }
+
+  const playPromise = audio.play();
+  if (playPromise) {
+    playPromise.catch(() => {
+      showMessage("浏览器未能播放背景音乐，请再次点击「自动播放」。", "info");
+    });
+  }
 }
 
-function stopAutoplay() {
+function pausePreviewAudio() {
+  previewAudio?.pause();
+}
+
+function stopPreviewAudio() {
+  if (!previewAudio) {
+    return;
+  }
+  previewAudio.pause();
+  previewAudio.currentTime = 0;
+}
+
+function pauseAutoplay() {
   if (reportState.timer) {
     window.clearInterval(reportState.timer);
   }
@@ -882,6 +927,26 @@ function stopAutoplay() {
     reportState.shell.classList.remove("playing");
   }
   reportState.timer = null;
+  pausePreviewAudio();
+}
+
+function toggleAutoplay() {
+  if (reportState.timer) {
+    pauseAutoplay();
+    return;
+  }
+
+  reportState.playButton.textContent = "暂停";
+  reportState.shell.classList.add("playing");
+  startPreviewAudio();
+  reportState.timer = window.setInterval(() => {
+    showReportPage(reportState.current + 1, "next");
+  }, getSlideDurationMs());
+}
+
+function stopAutoplay() {
+  pauseAutoplay();
+  stopPreviewAudio();
 }
 
 function wireSwipeNavigation(shell) {
@@ -954,7 +1019,13 @@ function buildExportControls() {
 
   const musicSelect = document.createElement("select");
   musicSelect.className = "export-music-select";
+  musicSelect.title = "预览播放与 MP4 导出使用的背景音乐";
   populateMusicSelect(musicSelect);
+  musicSelect.addEventListener("change", () => {
+    if (reportState.timer) {
+      startPreviewAudio();
+    }
+  });
 
   const exportButton = document.createElement("button");
   exportButton.className = "deck-button export-mp4-button";
@@ -1059,15 +1130,6 @@ function ensureXhsModal() {
       </header>
       <div class="xhs-modal-body">
         <p class="xhs-modal-status" id="xhsModalStatus"></p>
-        <div class="xhs-format-row">
-          <label class="xhs-field">
-            <span>发布形式</span>
-            <select id="xhsFormatSelect">
-              <option value="carousel">图文轮播</option>
-              <option value="video">视频笔记</option>
-            </select>
-          </label>
-        </div>
         <div class="xhs-qr-wrap" id="xhsQrWrap" hidden>
           <img id="xhsQrImage" alt="小红书发布二维码" />
           <p>用小红书 App 扫码完成发布</p>
@@ -1125,11 +1187,6 @@ function openXhsModal(payload = {}) {
   const qrImage = modal.querySelector("#xhsQrImage");
   const mediaList = modal.querySelector("#xhsMediaList");
   const creatorLink = modal.querySelector("#xhsCreatorLink");
-  const formatSelect = modal.querySelector("#xhsFormatSelect");
-
-  if (formatSelect && payload.format) {
-    formatSelect.value = payload.format;
-  }
 
   statusNode.textContent = payload.instructions || "素材已准备好。";
   titleField.value = payload.title || "";
@@ -1187,8 +1244,7 @@ async function publishCurrentStoryToXhs() {
   }
 
   const modal = ensureXhsModal();
-  const formatSelect = modal.querySelector("#xhsFormatSelect");
-  const publishFormat = formatSelect?.value || "carousel";
+  const publishFormat = reportState.xhsFormatSelect?.value || "carousel";
   const musicId = reportState.musicSelect?.value || "";
 
   if (publishFormat === "video" && !musicId) {

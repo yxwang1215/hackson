@@ -193,7 +193,7 @@ h3 {
   display: grid;
   grid-template-columns: minmax(430px, 0.82fr) minmax(0, 1.18fr);
   gap: 20px;
-  align-items: start;
+  align-items: stretch;
 }
 
 .composer,
@@ -209,6 +209,9 @@ h3 {
 .composer {
   position: sticky;
   top: 24px;
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 156px);
   max-height: calc(100vh - 48px);
   overflow: auto;
   box-shadow:
@@ -573,6 +576,8 @@ textarea:focus {
 
 .preview {
   position: relative;
+  display: flex;
+  flex-direction: column;
   min-height: calc(100vh - 156px);
   overflow: hidden;
   border-color: rgba(69, 214, 255, 0.12);
@@ -743,6 +748,7 @@ textarea:focus {
 
 .empty-state {
   display: grid;
+  flex: 1;
   place-items: center;
   min-height: 520px;
   padding: 28px;
@@ -776,6 +782,8 @@ textarea:focus {
 }
 
 .story-output {
+  flex: 1;
+  min-height: 0;
   overflow: hidden;
   padding: 0;
 }
@@ -1411,6 +1419,11 @@ textarea:focus {
 }
 
 .deck-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  height: 40px;
   min-height: 40px;
   border: 1px solid rgba(255, 255, 255, 0.22);
   border-radius: 999px;
@@ -1418,6 +1431,9 @@ textarea:focus {
   background: rgba(255, 255, 255, 0.12);
   color: #fff;
   font-weight: 900;
+  line-height: 1;
+  white-space: nowrap;
+  text-decoration: none;
   backdrop-filter: blur(18px);
 }
 
@@ -1490,6 +1506,7 @@ textarea:focus {
 
 .export-music-select {
   min-width: 132px;
+  height: 40px;
   min-height: 40px;
   border: 1px solid rgba(255, 255, 255, 0.22);
   border-radius: 999px;
@@ -1497,6 +1514,10 @@ textarea:focus {
   background: rgba(255, 255, 255, 0.12);
   color: #fff;
   font-weight: 700;
+}
+
+.export-bar .xhs-format-select {
+  min-width: 92px;
 }
 
 .export-mp4-button {
@@ -1511,6 +1532,8 @@ textarea:focus {
 }
 
 .xhs-publish-button:hover {
+  background: linear-gradient(135deg, #ff4d6d 0%, #ff2442 100%);
+  border-color: rgba(255, 140, 160, 0.65);
   box-shadow: 0 10px 28px rgba(255, 36, 66, 0.42);
 }
 
@@ -1853,6 +1876,7 @@ textarea:focus {
 
   .composer {
     position: static;
+    min-height: 0;
     max-height: none;
   }
 
@@ -2099,9 +2123,15 @@ textarea:focus {
   }
 
   .deck-button {
+    height: 38px;
     min-height: 38px;
     padding-inline: 12px;
     font-size: 0.86rem;
+  }
+
+  .export-music-select {
+    height: 38px;
+    min-height: 38px;
   }
 }
 
