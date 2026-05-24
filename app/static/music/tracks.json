@@ -1,0 +1,31 @@
+{
+  "tracks": [
+    {
+      "id": "warm-piano",
+      "name": "温柔梦境",
+      "filename": "warm-piano.mp3",
+      "mood": "warm",
+      "artist": "Diego Nava",
+      "source": "Mixkit",
+      "source_id": "493"
+    },
+    {
+      "id": "soft-ambient",
+      "name": "林间精灵",
+      "filename": "soft-ambient.mp3",
+      "mood": "calm",
+      "artist": "Alejandro Magaña",
+      "source": "Mixkit",
+      "source_id": "139"
+    },
+    {
+      "id": "bright-memory",
+      "name": "晴朗婚礼",
+      "filename": "bright-memory.mp3",
+      "mood": "bright",
+      "artist": "Francisco Alvear",
+      "source": "Mixkit",
+      "source_id": "657"
+    }
+  ]
+}

@@ -1,0 +1,233 @@
+{
+  "version": "1.1",
+  "preprocessed": true,
+  "generated_at": "2026-05-24T20:30:53.276986+00:00",
+  "image_dir": "image/life",
+  "category": "life",
+  "summary": {
+    "image_count": 8,
+    "vlm_candidates": 0,
+    "local_analysis_ready": 8
+  },
+  "label_policy": {
+    "absolute_time": "Use EXIF capture time when present.",
+    "relative_time": "If EXIF is missing, use file modified time and stable path ordering.",
+    "semantic_hint": "Derived from filename when it is not a generic camera name.",
+    "analysis_priority": "Generic filenames are marked for VLM; others can use local weak analysis.",
+    "warning": "Relative labels describe ordering only; they are not factual capture dates."
+  },
+  "items": [
+    {
+      "id": "T01",
+      "path": "五月天.jpg",
+      "filename": "五月天.jpg",
+      "sequence_index": 1,
+      "sequence_total": 8,
+      "time_label": "T01 / 第 1 个时间节点",
+      "stage_label": "早期",
+      "display_time": "2026年5月25日",
+      "time_source": "file_modified_time",
+      "time_value": "2026-05-25T03:01:28.517609+08:00",
+      "sort_confidence": "medium",
+      "semantic_hint": "五月天",
+      "tags": [
+        "五月天"
+      ],
+      "analysis_priority": "normal",
+      "preprocessed_analysis": "画面记录了五月天，对应早期，T01 / 第 1 个时间节点。",
+      "notes": "图片缺少 EXIF 拍摄时间，使用文件修改时间和路径名做相对排序。 文件名语义：五月天。",
+      "metadata": {
+        "file_size_bytes": 313814,
+        "width": 1279,
+        "height": 2276,
+        "format": "JPEG"
+      }
+    },
+    {
+      "id": "T02",
+      "path": "剧本杀_死亡回响.jpg",
+      "filename": "剧本杀_死亡回响.jpg",
+      "sequence_index": 2,
+      "sequence_total": 8,
+      "time_label": "T02 / 第 2 个时间节点",
+      "stage_label": "早期",
+      "display_time": "2026年5月25日",
+      "time_source": "file_modified_time",
+      "time_value": "2026-05-25T03:01:28.518650+08:00",
+      "sort_confidence": "medium",
+      "semantic_hint": "剧本杀 死亡回响",
+      "tags": [
+        "剧本杀 死亡回响",
+        "剧本杀",
+        "死亡回响"
+      ],
+      "analysis_priority": "normal",
+      "preprocessed_analysis": "画面记录了剧本杀 死亡回响，对应早期，T02 / 第 2 个时间节点。",
+      "notes": "图片缺少 EXIF 拍摄时间，使用文件修改时间和路径名做相对排序。 文件名语义：剧本杀 死亡回响。",
+      "metadata": {
+        "file_size_bytes": 219109,
+        "width": 1440,
+        "height": 1133,
+        "format": "JPEG"
+      }
+    },
+    {
+      "id": "T03",
+      "path": "剧本杀_雪乡.jpg",
+      "filename": "剧本杀_雪乡.jpg",
+      "sequence_index": 3,
+      "sequence_total": 8,
+      "time_label": "T03 / 第 3 个时间节点",
+      "stage_label": "中期",
+      "display_time": "2026年5月25日",
+      "time_source": "file_modified_time",
+      "time_value": "2026-05-25T03:01:28.519480+08:00",
+      "sort_confidence": "medium",
+      "semantic_hint": "剧本杀 雪乡",
+      "tags": [
+        "剧本杀 雪乡",
+        "剧本杀",
+        "雪乡"
+      ],
+      "analysis_priority": "normal",
+      "preprocessed_analysis": "画面记录了剧本杀 雪乡，对应中期，T03 / 第 3 个时间节点。",
+      "notes": "图片缺少 EXIF 拍摄时间，使用文件修改时间和路径名做相对排序。 文件名语义：剧本杀 雪乡。",
+      "metadata": {
+        "file_size_bytes": 172515,
+        "width": 1280,
+        "height": 1280,
+        "format": "JPEG"
+      }
+    },
+    {
+      "id": "T04",
+      "path": "北京环球.jpg",
+      "filename": "北京环球.jpg",
+      "sequence_index": 4,
+      "sequence_total": 8,
+      "time_label": "T04 / 第 4 个时间节点",
+      "stage_label": "中期",
+      "display_time": "2026年5月25日",
+      "time_source": "file_modified_time",
+      "time_value": "2026-05-25T03:01:28.519968+08:00",
+      "sort_confidence": "medium",
+      "semantic_hint": "北京环球",
+      "tags": [
+        "北京环球"
+      ],
+      "analysis_priority": "normal",
+      "preprocessed_analysis": "画面记录了北京环球，对应中期，T04 / 第 4 个时间节点。",
+      "notes": "图片缺少 EXIF 拍摄时间，使用文件修改时间和路径名做相对排序。 文件名语义：北京环球。",
+      "metadata": {
+        "file_size_bytes": 154967,
+        "width": 1280,
+        "height": 1280,
+        "format": "JPEG"
+      }
+    },
+    {
+      "id": "T05",
+      "path": "奶茶好喝.jpg",
+      "filename": "奶茶好喝.jpg",
+      "sequence_index": 5,
+      "sequence_total": 8,
+      "time_label": "T05 / 第 5 个时间节点",
+      "stage_label": "中期",
+      "display_time": "2026年5月25日",
+      "time_source": "file_modified_time",
+      "time_value": "2026-05-25T03:01:28.520895+08:00",
+      "sort_confidence": "medium",
+      "semantic_hint": "奶茶好喝",
+      "tags": [
+        "奶茶好喝"
+      ],
+      "analysis_priority": "normal",
+      "preprocessed_analysis": "画面记录了奶茶好喝，对应中期，T05 / 第 5 个时间节点。",
+      "notes": "图片缺少 EXIF 拍摄时间，使用文件修改时间和路径名做相对排序。 文件名语义：奶茶好喝。",
+      "metadata": {
+        "file_size_bytes": 114615,
+        "width": 960,
+        "height": 1708,
+        "format": "JPEG"
+      }
+    },
+    {
+      "id": "T06",
+      "path": "看的小说.jpg",
+      "filename": "看的小说.jpg",
+      "sequence_index": 6,
+      "sequence_total": 8,
+      "time_label": "T06 / 第 6 个时间节点",
+      "stage_label": "后期",
+      "display_time": "2026年5月25日",
+      "time_source": "file_modified_time",
+      "time_value": "2026-05-25T03:01:28.521492+08:00",
+      "sort_confidence": "medium",
+      "semantic_hint": "看的小说",
+      "tags": [
+        "看的小说"
+      ],
+      "analysis_priority": "normal",
+      "preprocessed_analysis": "画面记录了看的小说，对应后期，T06 / 第 6 个时间节点。",
+      "notes": "图片缺少 EXIF 拍摄时间，使用文件修改时间和路径名做相对排序。 文件名语义：看的小说。",
+      "metadata": {
+        "file_size_bytes": 42296,
+        "width": 422,
+        "height": 688,
+        "format": "JPEG"
+      }
+    },
+    {
+      "id": "T07",
+      "path": "米线好吃.jpg",
+      "filename": "米线好吃.jpg",
+      "sequence_index": 7,
+      "sequence_total": 8,
+      "time_label": "T07 / 第 7 个时间节点",
+      "stage_label": "后期",
+      "display_time": "2026年5月25日",
+      "time_source": "file_modified_time",
+      "time_value": "2026-05-25T03:01:28.521812+08:00",
+      "sort_confidence": "medium",
+      "semantic_hint": "米线好吃",
+      "tags": [
+        "米线好吃"
+      ],
+      "analysis_priority": "normal",
+      "preprocessed_analysis": "画面记录了米线好吃，对应后期，T07 / 第 7 个时间节点。",
+      "notes": "图片缺少 EXIF 拍摄时间，使用文件修改时间和路径名做相对排序。 文件名语义：米线好吃。",
+      "metadata": {
+        "file_size_bytes": 139183,
+        "width": 1280,
+        "height": 1280,
+        "format": "JPEG"
+      }
+    },
+    {
+      "id": "T08",
+      "path": "自己做麻糍.jpg",
+      "filename": "自己做麻糍.jpg",
+      "sequence_index": 8,
+      "sequence_total": 8,
+      "time_label": "T08 / 第 8 个时间节点",
+      "stage_label": "后期",
+      "display_time": "2026年5月25日",
+      "time_source": "file_modified_time",
+      "time_value": "2026-05-25T03:01:28.522503+08:00",
+      "sort_confidence": "medium",
+      "semantic_hint": "自己做麻糍",
+      "tags": [
+        "自己做麻糍"
+      ],
+      "analysis_priority": "normal",
+      "preprocessed_analysis": "画面记录了自己做麻糍，对应后期，T08 / 第 8 个时间节点。",
+      "notes": "图片缺少 EXIF 拍摄时间，使用文件修改时间和路径名做相对排序。 文件名语义：自己做麻糍。",
+      "metadata": {
+        "file_size_bytes": 178857,
+        "width": 1280,
+        "height": 1280,
+        "format": "JPEG"
+      }
+    }
+  ]
+}

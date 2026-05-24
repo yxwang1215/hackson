@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>成长档案</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <div class="app-shell" id="appShell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">AI Time Narrative</p>
+          <h1>成长档案</h1>
+        </div>
+        <div class="status-pill" id="serviceStatus">检查服务中</div>
+      </header>
+
+      <main class="workspace">
+        <section class="composer" aria-label="照片信息编辑">
+          <div class="panel-heading">
+            <div>
+              <h2>照片时间线</h2>
+              <p>按顺序上传照片，文字信息可留空。</p>
+            </div>
+            <button class="icon-button" type="button" id="addItemButton" title="新增一页">+</button>
+          </div>
+
+          <form id="narrativeForm" class="timeline-form">
+            <div class="batch-tools">
+              <label class="folder-path-field">
+                <span>本机文件夹地址</span>
+                <input id="folderPathInput" type="text" placeholder="/Users/wyx/Code/hackson/image/life" />
+              </label>
+              <button class="primary-button folder-path-button" type="button" id="folderPathButton">分析文件夹</button>
+              <button class="secondary-button folder-button" type="button" id="folderButton">上传文件夹</button>
+              <input id="folderInput" class="folder-input" type="file" accept="image/*" webkitdirectory directory multiple />
+              <p id="folderSummary" class="folder-summary">可以输入本机文件夹地址，或用浏览器选择文件夹。</p>
+            </div>
+
+            <div class="timeline-pager" id="timelinePager" hidden>
+              <div>
+                <span id="timelineGroupSummary">第 1 组</span>
+                <small id="timelineTotalSummary">0 张照片</small>
+              </div>
+              <div class="timeline-group-buttons" id="timelineGroupButtons"></div>
+            </div>
+
+            <div id="itemsList" class="items-list"></div>
+
+            <div class="settings-grid">
+              <label>
+                <span>语气</span>
+                <select id="toneSelect" name="tone">
+                  <option value="warm">温暖</option>
+                  <option value="poetic">诗意</option>
+                  <option value="clean">简洁</option>
+                  <option value="playful">轻快</option>
+                </select>
+              </label>
+              <label>
+                <span>语言</span>
+                <select id="languageSelect" name="language">
+                  <option value="zh-CN">中文</option>
+                  <option value="en">English</option>
+                </select>
+              </label>
+              <label>
+                <span>每段行数</span>
+                <input id="lineCountInput" type="number" min="1" max="5" value="3" />
+              </label>
+            </div>
+
+            <div class="form-actions">
+              <button class="secondary-button" type="button" id="sampleButton">示例结构</button>
+              <button class="primary-button" type="submit" id="submitButton">生成纪念册</button>
+            </div>
+          </form>
+        </section>
+
+        <section class="preview" aria-label="生成结果">
+          <div class="preview-toolbar">
+            <div>
+              <p class="eyebrow">Preview</p>
+              <h2 id="previewTitle">等待生成</h2>
+            </div>
+            <div class="preview-actions">
+              <button class="primary-button compact" type="button" id="enterPreviewButton" hidden>全屏预览</button>
+              <button class="secondary-button compact" type="button" id="historyButton">History</button>
+              <button class="secondary-button compact" type="button" id="resetButton">清空</button>
+            </div>
+          </div>
+
+          <div id="messageBox" class="message-box" hidden></div>
+          <section class="history-panel" id="historyPanel" aria-label="历史生成记录" hidden>
+            <div class="history-panel-header">
+              <div>
+                <p class="eyebrow">History</p>
+                <h3>历史生成记录</h3>
+              </div>
+              <button class="secondary-button compact" type="button" id="clearHistoryButton">清空历史</button>
+            </div>
+            <div class="history-list" id="historyList"></div>
+          </section>
+          <div id="previewEmpty" class="empty-state">
+            <div class="empty-visual"></div>
+            <h3>你的时间轴会显示在这里</h3>
+            <p>上传照片后会生成画面理解、标题、段落和 labels。</p>
+          </div>
+          <article id="storyOutput" class="story-output" hidden></article>
+        </section>
+      </main>
+    </div>
+
+    <template id="itemTemplate">
+      <article class="item-row">
+        <div class="item-index">1</div>
+        <div class="upload-box">
+          <input class="image-input" type="file" accept="image/*" />
+          <div class="upload-placeholder">
+            <span>选择照片</span>
+          </div>
+          <img class="image-preview" alt="" hidden />
+        </div>
+        <div class="item-fields">
+          <label>
+            <span>时间（可选）</span>
+            <input class="time-input" type="text" placeholder="留空自动按顺序生成" />
+          </label>
+          <label>
+            <span>补充描述（可选）</span>
+            <textarea class="desc-input" rows="3" placeholder="可留空，由图片理解自动补充"></textarea>
+          </label>
+        </div>
+        <button class="remove-button" type="button" title="删除这一页">×</button>
+      </article>
+    </template>
+
+    <script src="/static/app.js" type="module"></script>
+  </body>
+</html>

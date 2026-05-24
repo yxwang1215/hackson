@@ -215,4 +215,36 @@ brew install ffmpeg
 ```
 
 若未安装 ffmpeg，页面上的导出按钮会处于不可用状态。
+
+## 发布到小红书
+
+小红书没有对个人开发者开放的「直接发帖」官方 API。项目提供 **发布准备接口**，自动打包标题、正文、话题标签和素材，并支持两种模式：
+
+- `mock`（默认）：生成素材包 + 复制文案，手动到 [创作中心](https://creator.xiaohongshu.com/publish/publish) 上传
+- `webhook`：把素材 POST 到第三方发布服务（通常返回扫码二维码）
+
+### 接口
+
+`GET /publish/xiaohongshu/status` — 查询发布能力与配置
+
+`POST /publish/xiaohongshu` — multipart 表单字段：
+
+- `story_json`：纪念册 JSON
+- `asset_token` / `asset_source`：图片会话 token
+- `publish_format`：`carousel`（图文）或 `video`（视频笔记）
+- `music_id`：视频笔记必填
+- `slide_duration`：视频每页时长（秒）
+
+前端预览区点击 **发小红书** 即可调用。
+
+### 环境变量（可选）
+
+```text
+XHS_PUBLISH_PROVIDER=mock
+XHS_PUBLISH_API_URL=
+XHS_PUBLISH_API_KEY=
+PUBLIC_BASE_URL=http://127.0.0.1:8001
+```
+
+对接第三方 webhook 时，`PUBLIC_BASE_URL` 必须是公网可访问地址（如 ngrok），对方才能拉取图片/视频。
 # hackson

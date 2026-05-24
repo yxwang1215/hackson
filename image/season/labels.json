@@ -1,0 +1,69 @@
+{
+  "version": "1.1",
+  "preprocessed": true,
+  "generated_at": "2026-05-24T20:30:53.278117+00:00",
+  "image_dir": "image/season",
+  "category": "season",
+  "summary": {
+    "image_count": 2,
+    "vlm_candidates": 2,
+    "local_analysis_ready": 0
+  },
+  "label_policy": {
+    "absolute_time": "Use EXIF capture time when present.",
+    "relative_time": "If EXIF is missing, use file modified time and stable path ordering.",
+    "semantic_hint": "Derived from filename when it is not a generic camera name.",
+    "analysis_priority": "Generic filenames are marked for VLM; others can use local weak analysis.",
+    "warning": "Relative labels describe ordering only; they are not factual capture dates."
+  },
+  "items": [
+    {
+      "id": "T01",
+      "path": "1.jpg",
+      "filename": "1.jpg",
+      "sequence_index": 1,
+      "sequence_total": 2,
+      "time_label": "T01 / 第 1 个时间节点",
+      "stage_label": "早期",
+      "display_time": "2026年5月25日",
+      "time_source": "file_modified_time",
+      "time_value": "2026-05-25T00:47:21+08:00",
+      "sort_confidence": "medium",
+      "semantic_hint": "",
+      "tags": [],
+      "analysis_priority": "vlm",
+      "preprocessed_analysis": "画面记录了第 1 张，对应早期，T01 / 第 1 个时间节点。",
+      "notes": "图片缺少 EXIF 拍摄时间，使用文件修改时间和路径名做相对排序。 文件名缺少语义，建议后续走 VLM 补充理解。 analysis_priority=vlm。",
+      "metadata": {
+        "file_size_bytes": 492655,
+        "width": 1707,
+        "height": 1280,
+        "format": "JPEG"
+      }
+    },
+    {
+      "id": "T02",
+      "path": "2.jpg",
+      "filename": "2.jpg",
+      "sequence_index": 2,
+      "sequence_total": 2,
+      "time_label": "T02 / 第 2 个时间节点",
+      "stage_label": "后期",
+      "display_time": "2026年5月25日",
+      "time_source": "file_modified_time",
+      "time_value": "2026-05-25T00:47:43+08:00",
+      "sort_confidence": "medium",
+      "semantic_hint": "",
+      "tags": [],
+      "analysis_priority": "vlm",
+      "preprocessed_analysis": "画面记录了第 2 张，对应后期，T02 / 第 2 个时间节点。",
+      "notes": "图片缺少 EXIF 拍摄时间，使用文件修改时间和路径名做相对排序。 文件名缺少语义，建议后续走 VLM 补充理解。 analysis_priority=vlm。",
+      "metadata": {
+        "file_size_bytes": 822864,
+        "width": 1707,
+        "height": 1280,
+        "format": "JPEG"
+      }
+    }
+  ]
+}
